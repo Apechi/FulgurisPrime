@@ -50,13 +50,14 @@ android.productFlavors.all { flavor ->
 def generatedLocaleListDir = layout.buildDirectory.dir('generated/source/locale/fulguris/locale')
 
 android {
-    compileSdkVersion project.targetSdkVersion
     // Specify namespace for generated R and BuildConfig classes
     namespace 'fulguris'
 
+
+
     defaultConfig {
         minSdkVersion project.minSdkVersion
-        targetSdkVersion project.targetSdkVersion
+        targetSdk 35
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -184,6 +185,7 @@ android {
         }
 
     }
+    compileSdk 35
 
     // Filter out invalid variants
     variantFilter { variant ->
@@ -237,12 +239,14 @@ android {
     }
 
     buildFeatures {
+        buildConfig true
         // That should give us both view and data binding
         dataBinding true
     }
     lint {
         abortOnError true
     }
+    buildToolsVersion '35.0.0'
 }
 
 jacoco {
