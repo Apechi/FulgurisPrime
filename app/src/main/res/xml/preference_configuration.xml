@@ -109,7 +109,7 @@
         a:entries="@array/CutoutMode"
         a:icon="@drawable/ic_short_text"
         a:singleLineTitle="false"
-        a:enumClassName="fulguris.enums.CutoutMode"
+        a:enumClassName="theprime.enums.CutoutMode"
         />
 
     <slions.pref.SliderPreference

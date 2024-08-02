@@ -1213,7 +1213,7 @@ class TabsManager @Inject constructor(
             iWebBrowser.onMaxTabReached()
             // Still allow spawning more tabs for the time being.
             // That means not having a valid subscription will only spawn that annoying message above.
-            //return false
+            return false
         }
 
         Timber.d("New tab, show: $show")

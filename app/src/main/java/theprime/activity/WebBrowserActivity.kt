@@ -432,7 +432,7 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
             // As per CPAL license show attribution if not slions brand
             makeSnackbar("",5000, Gravity.TOP).setAction("Powered by ⚡Fulguris") {
                 Intent(Intent.ACTION_VIEW).apply{
-                    data = Uri.parse(getString(R.string.url_fulguris_home_page))
+                    data = Uri.parse(getString(R.string.url_fulguris_home_page_fr))
                     putExtra("SOURCE", "SELF")
                     startActivity(this)
                 }
@@ -4713,7 +4713,7 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
                 .setTitle(R.string.title_updated)
                 .setMessage(getString(R.string.message_updated, BuildConfig.VERSION_NAME))
                 .setNegativeButton(R.string.no, null)
-                .setPositiveButton(R.string.yes) { _, _ -> val url = getString(R.string.url_app_updates)
+                .setPositiveButton(R.string.yes) { _, _ -> val url = getString(R.string.play_store_link)
                     val i = Intent(Intent.ACTION_VIEW)
                     i.data = Uri.parse(url)
                     // Not sure that does anything
@@ -4797,12 +4797,7 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
         makeSnackbar(
                 getString(R.string.max_tabs), 10000, if (configPrefs.toolbarsBottom) Gravity.TOP else Gravity.BOTTOM) //Snackbar.LENGTH_LONG
                 .setAction(R.string.show, OnClickListener {
-                    // We want to launch our settings activity
-                    val i = Intent(this, SettingsActivity::class.java)
-                    /** See [SettingsActivity.onResume] for details of how this is handled on the other side */
-                    // Tell our settings activity to load our Contribute/Sponsorship fragment
-                    i.putExtra(SETTINGS_CLASS_NAME, SponsorshipSettingsFragment::class.java.name)
-                    startActivity(i)
+                    // TODO: PASANG IKLAN INTERSTITIAL DI SINI DAN TAMBAHKAN KE MAXTAB 20 SETIAP IKLAN BERES KALAU BISA
                 }).show()
     }
 

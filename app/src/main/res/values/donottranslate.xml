@@ -23,11 +23,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Prime Browser</string>
-    <string name="url_app_home_page">https://github.com/anthonycr/Lightning-Browser</string>
+    <string name="url_app_home_page">https://theprime.id/</string>
     <string name="url_privacy_policy">https://slions.net/threads/fulguris-privacy-policy.99/</string>
     <string name="url_terms_and_conditions">https://slions.net/threads/fulguris-terms-conditions.100/</string>
-    <string name="url_discord">https://discord.com/invite/7M4Ms5dMZE</string>
-    <string name="url_fulguris_home_page">http://fulguris.slions.net</string>
+    <string name="url_discord">no</string>
+    <string name="url_fulguris_home_page">https://theprime.id/</string>
+    <string name="url_fulguris_home_page_fr">https://theprime.id/</string>
 
     <!-- Settings keys -->
     <string name="pref_key_hide_status_bar">pref_key_hide_status_bar</string>
@@ -177,7 +178,7 @@
     <string name="new_tab_position_end_value">END_OF_TAB_LIST</string>
 
 
-    <string name="slions_update_check_url">https://slions.net/api/resources/10/versions</string>
+    <string name="slions_update_check_url">https://theprime.id/</string>
     <string name="slions_api_key">eQxvqk5DGEXUBqdt5Y_7rGRxF2m0REdb</string>
 
 

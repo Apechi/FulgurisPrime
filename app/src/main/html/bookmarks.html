@@ -1,96 +1,216 @@
 <!DOCTYPE html>
-<html xmlns=http://www.w3.org/1999/xhtml>
-
-<head>
-    <meta content=en-us http-equiv=Content-Language>
-    <meta content='text/html; charset=utf-8' http-equiv=Content-Type>
-    <meta name=viewport
-          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-    <title>
-        ${TITLE}
-    </title>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>${TITLE}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      :root {
+        --primary-blue: #3498db;
+        --secondary-blue: #2980b9;
+        --light-blue: #ebf5fb;
+        --dark-blue: #1a5276;
+        --white: #ffffff;
+        --light-gray: #f5f7fa;
+      }
 
-    body {
-        background: ${colorBackground};
-        /* Needed to center on the screen */
+      body {
+        background: var(--light-blue);
+        margin: 0;
+        padding: 20px;
+        font-family: "Poppins", Arial, sans-serif;
+        color: var(--dark-blue);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      #title {
+        color: var(--dark-blue);
+        font-weight: 500;
+      }
+
+      .header {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 5px;
-    }
+        margin-bottom: 40px;
+        background: var(--white);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(52, 152, 219, 0.1);
+      }
 
-    /* Needed to center on the screen */
-    .parent {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin:0;
-        width: 95vw;
-        height: 95vh;
-    }
+      .logo img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+      }
 
+      .logo h2 {
+        margin: 20px 0 0 0;
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--primary-blue);
+      }
 
-    #content {
-        width: 100%;
-        max-width: 1000px;
-        margin: auto;
+      h1,
+      h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin: 0;
+        color: var(--primary-blue);
+      }
+
+      h6 {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 10px 0 20px;
+        color: var(--secondary-blue);
+      }
+
+      #content,
+      #recentNews {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+
+      .box,
+      .news-item {
+        background-color: var(--white);
+        border: none;
+        border-radius: 15px;
+        padding: 1em;
         text-align: center;
+        transition: all 0.3s ease;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .box {
-        vertical-align: middle;
-        text-align: center;
+        gap: 1.5em;
+        justify-content: safe;
         align-items: center;
-        min-width: 0px;
-        margin: 6px;
-        padding: 14px;
-        background-color: ${colorControl};
-        border: 1px solid ${colorBorder};
-        color: ${colorOnBackground};
-        border-top-width: 1px;
-        border-bottom-width: 2px;
-        border-right-width: 2px;
-        border-radius: 8px;
-        font-size: large;
-        font-family: Roboto, Arial, Helvetica, 'sans-serif';
-        vertical-align: middle;
-    }
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
+      }
+
+      .box:hover,
+      .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(52, 152, 219, 0.2);
+      }
+
+      .box img,
+      .news-item img {
+        width: 2em;
+        height: 2em;
+
+        border-radius: 12px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+
+      .box:hover img,
+      .news-item:hover img {
+        transform: scale(1.05);
+      }
 
       .ellipsis {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
 
-
-      a {
-          text-decoration: none;
+      .menu-icon {
+        font-size: 24px;
+        color: var(--primary-blue);
       }
 
+      .news-item {
+        padding: 20px;
+      }
 
-    img {
-        vertical-align: middle;
-        margin-right: 10px;
-        width: 20px;
-        height: 20px;
-    }
-</style>
+      .section-header {
+        /* display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        background: var(--white);
+        padding: 20px 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1); */
+      }
 
-</head>
+      @media (max-width: 768px) {
+        .header {
+          padding: 20px;
+        }
 
-<body>
+        .logo img {
+          width: 12em;
+          height: 12em;
+        }
 
-    <div class="parent">
-        <div id=content>
-            <a id="repeated" class="box" href="${URL}">
-                <div id="title" class="ellipsis"><img src="${IMAGE}"></div>
-            </a>
+        .img-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .logo h2 {
+          font-size: 24px;
+          align-items: center;
+          text-align: center;
+        }
+
+        h1,
+        h2 {
+          font-size: 24px;
+        }
+
+        #content,
+        #recentNews {
+          margin-top: 1em;
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <div class="img-container">
+            <img
+              src="https://theprime.id/assets/img/preloader.png"
+              alt="Logo"
+            />
+          </div>
+          <h2>Prime Browser</h2>
         </div>
-    </div>
-</body>
+      </div>
 
+      <div class="section-header">
+        <h1>Bookmarks</h1>
+      </div>
+      <div id="content">
+        <a id="repeated" class="box" href="${URL}">
+          <img src="${IMAGE}" class="img-bookmark" alt="" />
+          <div id="title" class="ellipsis"></div>
+        </a>
+      </div>
+    </div>
+    <script></script>
+  </body>
 </html>

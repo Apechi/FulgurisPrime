@@ -6,76 +6,128 @@
     <meta content='text/html; charset=utf-8' http-equiv=Content-Type />
     <meta name=viewport content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
     <title>${pageTitle}</title>
-</head>
-<style>
-    body,
-    html {
-        margin: 0px;
-        padding: 0px;
-        background-color: ${backgroundColor};
-    }
-    
-    .box {
-        vertical-align: middle;
-        position: relative;
-        display: block;
-        margin: 0px;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        margin-left: 12px;
-        margin-right: 12px;
-        background-color: ${backgroundColor};
-        border-bottom: 1px solid ${dividerColor};
-        font-family: Arial;
-        color: #444;
-        font-size: 12px;
-    }
-    
-    .box a {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-    
-    .entryTitle {
-        color: ${textColor};
-        font-size: 22px;
-        font-family: Arial;
-        white-space: nowrap;
-        overflow: hidden;
-        margin: auto;
-        text-overflow: ellipsis;
-        -o-text-overflow: ellipsis;
-        -ms-text-overflow: ellipsis;
-    }
-    
-    .entryUrl {
-        color: ${secondaryTextColor};
-        font-size: 16px;
-        font-family: Arial;
-        white-space: nowrap;
-        overflow: hidden;
-        margin: auto;
-        text-overflow: ellipsis;
-        -o-text-overflow: ellipsis;
-        -ms-text-overflow: ellipsis;
-    }
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-</style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: ${backgroundColor};
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+        }
+
+        #repeated {
+            margin-bottom: 1em;
+        }
+        
+        #content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .box {
+            position: relative;
+            margin: 0 0 30px 0;
+            padding: 20px 20px 20px 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .box:before {
+            content: '\f0c1';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #3498db;
+        }
+        
+        .box:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: #3498db;
+        }
+        
+        .box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .box a {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .entryTitle {
+            color: #101011;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .entryUrl {
+            color: ${secondaryTextColor};
+            font-size: 16px;
+            font-weight: 300;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 600px) {
+            #content {
+                padding: 20px 10px;
+            }
+            
+            .box {
+                padding: 15px 15px 15px 50px;
+            }
+            
+            .box:before {
+                left: 15px;
+                font-size: 20px;
+            }
+            
+            .entryTitle {
+                font-size: 20px;
+            }
+            
+            .entryUrl {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
 
 <body>
     <div id="content">
-
         <div id=repeated class=box>
             <a href='${URL}'></a>
             <p id='title' class='entryTitle'>${TITLE}</p>
             <p id='url' class='entryUrl'>${URL}</p>
         </div>
-
     </div>
 </body>
 
