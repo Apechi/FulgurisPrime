@@ -51,12 +51,12 @@ def generatedLocaleListDir = layout.buildDirectory.dir('generated/source/locale/
 
 android {
     // Specify namespace for generated R and BuildConfig classes
-    namespace 'fulguris'
+    namespace 'theprime'
 
 
 
     defaultConfig {
-        minSdkVersion project.minSdkVersion
+        minSdk 24
         targetSdk 35
         vectorDrawables.useSupportLibrary = true
     }
@@ -100,6 +100,7 @@ android {
             ndk {
                 //abiFilters "arm64-v8a", "armeabi-v7a", "armeabi", "mips"
             }
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -180,16 +181,19 @@ android {
 
         fdroid {
             dimension "PUBLISHER"
-            applicationIdSuffix ".fdroid"
+            applicationIdSuffix ".codegith"
+            applicationId "com.theprime.primebrowser"
             buildConfigField "Sponsorship", "SPONSORSHIP", "Sponsorship.BRONZE"
         }
+
+
 
     }
     compileSdk 35
 
     // Filter out invalid variants
     variantFilter { variant ->
-        def names = variant.flavors*.name
+        def names  = variant.flavors*.name
         // slions variant do not support base version and undef publisher
         if ((names.contains("slions") && (names.contains("undef") || names.contains("base")))
                 // styx variant only support base version and undef publisher
@@ -209,12 +213,12 @@ android {
     // Needed to customize our APK file name per flavor
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            //def appId = variant.applicationId// com.exampleFree.app OR com.examplePaid.app
+            def appId = "theprime.primebrowser" // com.exampleFree.app OR com.examplePaid.app
             def versionName = variant.versionName
-            //def versionCode = variant.versionCode // e.g 1.0
-            //def flavorName = variant.flavorName // e. g. Free
-            //def buildType = variant.buildType.name // e. g. debug
-            //def variantName = variant.name // e. g. FreeDebug
+            def versionCode = "1.0"// e.g 1.0
+            def flavorName = "Full" // e. g. Free
+            def buildType = "debug" // e. g. debug
+            def variantName = "PrimeBrowser" // e. g. FreeDebug
 
             // Just replace our archive base name, which by default is "app" with our own format according to flavor
             if (variant.flavorName.contains("slions")) {
@@ -224,6 +228,7 @@ android {
                 //println("Use Styx archive name")
                 outputFileName = outputFileName.replaceFirst("^$archivesBaseName", "Styx-v$versionName")
             }
+            outputFileName = "PrimeBrowser.apk"
             //customize your app name by using variables
             //outputFileName = "${variantName}.apk"
         }
@@ -239,8 +244,9 @@ android {
     }
 
     buildFeatures {
-        buildConfig true
+
         // That should give us both view and data binding
+        buildConfig true
         dataBinding true
     }
     lint {

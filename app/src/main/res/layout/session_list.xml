@@ -27,7 +27,7 @@
     <data>
         <variable
             name="uiController"
-            type="fulguris.browser.WebBrowser"/>
+            type="theprime.browser.WebBrowser"/>
     </data>
 
         <LinearLayout

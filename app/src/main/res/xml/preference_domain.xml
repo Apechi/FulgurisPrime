@@ -45,7 +45,7 @@
             android:action="android.intent.action.VIEW"
             android:data=""
             android:targetPackage="@string/application_id"
-            android:targetClass="fulguris.activity.MainActivity"
+            android:targetClass="theprime.activity.MainActivity"
             >
 
         </intent>
@@ -167,7 +167,7 @@
 
     </PreferenceCategory>
 
-    <fulguris.settings.preferences.PreferenceCategoryEx
+    <theprime.settings.preferences.PreferenceCategoryEx
         a:title="@string/settings_title_launch_app"
         a:summary="@string/dialog_message_third_party_app">
 
@@ -192,9 +192,9 @@
             a:dependency="@string/pref_key_launch_app_override"
             />
 
-    </fulguris.settings.preferences.PreferenceCategoryEx>
+    </theprime.settings.preferences.PreferenceCategoryEx>
 
-    <fulguris.settings.preferences.PreferenceCategoryEx
+    <theprime.settings.preferences.PreferenceCategoryEx
         a:title="@string/settings_title_ssl_error"
         a:summary="@string/settings_summary_ssl_error">
 
@@ -219,7 +219,7 @@
             a:dependency="@string/pref_key_ssl_error_override"
             />
 
-    </fulguris.settings.preferences.PreferenceCategoryEx>
+    </theprime.settings.preferences.PreferenceCategoryEx>
 
     <SwitchPreferenceCompat
         a:key="@string/pref_key_entry_point"

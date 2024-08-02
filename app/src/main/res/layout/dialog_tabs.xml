@@ -63,7 +63,7 @@ fulguris.view.DynamicHeightViewPager
 androidx.viewpager.widget.ViewPager
 -->
 
-        <fulguris.view.DynamicHeightViewPager
+        <theprime.view.DynamicHeightViewPager
             android:id="@+id/dialog_viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -16,8 +16,8 @@
 
 package jp.hazuki.yuzubrowser.adblock.filter.unified
 
-import fulguris.adblock.AbpBlockerManager.Companion.badfilterPrefixes
-import fulguris.adblock.AbpBlockerManager.Companion.blockerPrefixes
+import theprime.adblock.AbpBlockerManager.Companion.badfilterPrefixes
+import theprime.adblock.AbpBlockerManager.Companion.blockerPrefixes
 import jp.hazuki.yuzubrowser.adblock.filter.unified.element.ElementFilter
 import java.security.InvalidParameterException
 

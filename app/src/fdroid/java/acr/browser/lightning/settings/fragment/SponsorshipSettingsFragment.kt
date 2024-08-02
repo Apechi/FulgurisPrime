@@ -20,7 +20,7 @@
  * All Rights Reserved.
  */
  
-package fulguris.settings.fragment
+package theprime.settings.fragment
 
 /**
  * Sponsorship settings for Fdroid variant.

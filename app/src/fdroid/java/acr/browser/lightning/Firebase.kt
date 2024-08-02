@@ -20,7 +20,7 @@
  * All Rights Reserved.
  */
 
-package fulguris
+package theprime
 
 import android.content.Context
 
