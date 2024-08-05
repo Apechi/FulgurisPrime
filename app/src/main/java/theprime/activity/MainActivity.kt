@@ -40,6 +40,8 @@ class MainActivity @Inject constructor(): WebBrowserActivity() {
     }
 
 
+
+
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         if (event.action == KeyEvent.ACTION_DOWN && event.isCtrlPressed) {
             when (event.keyCode) {

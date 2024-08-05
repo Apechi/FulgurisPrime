@@ -67,6 +67,9 @@ class TabsDrawerView @JvmOverloads constructor(
             setHasFixedSize(false)
         }
 
+        iBinding.actionCloseTabsDrawer.setOnClickListener {
+            webBrowser.onBackButtonPressed()
+        }
 
 
         val callback: ItemTouchHelper.Callback = ItemDragDropSwipeHelper(tabsAdapter)
@@ -130,6 +133,7 @@ class TabsDrawerView @JvmOverloads constructor(
 
     override fun setGoBackEnabled(isEnabled: Boolean) {
         //actionBack.isEnabled = isEnabled
+
     }
 
     override fun setGoForwardEnabled(isEnabled: Boolean) {

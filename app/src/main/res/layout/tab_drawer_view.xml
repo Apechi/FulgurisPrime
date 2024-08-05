@@ -24,6 +24,17 @@
         android:baselineAligned="false"
         android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/action_close_tabs_drawer"
+                style="?android:attr/actionButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="closeDrawer"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_arrow_back_ios"
+                />
+
         <ImageButton
             android:id="@+id/action_close_all_tabs"
             style="?android:attr/actionButtonStyle"

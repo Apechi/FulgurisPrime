@@ -81,6 +81,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 setBookmarksShown(null, true)
                 iBinding.listBookmarks.layoutManager?.scrollToPosition(scrollIndex)
             }
+            webBrowser.onBackButtonPressed()
         }
 
         iAdapter = BookmarksAdapter(

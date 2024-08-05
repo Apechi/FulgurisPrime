@@ -4797,7 +4797,7 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
         makeSnackbar(
                 getString(R.string.max_tabs), 10000, if (configPrefs.toolbarsBottom) Gravity.TOP else Gravity.BOTTOM) //Snackbar.LENGTH_LONG
                 .setAction(R.string.show, OnClickListener {
-                    // TODO: PASANG IKLAN INTERSTITIAL DI SINI DAN TAMBAHKAN KE MAXTAB 20 SETIAP IKLAN BERES KALAU BISA
+                    // TODO: PASANG IKLAN INTERSTITIAL DI SINI DAN TAMBAHKAN KE MAXTAB 0 SETIAP IKLAN BERES KALAU BISA
                 }).show()
     }
 
