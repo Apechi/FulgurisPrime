@@ -22,14 +22,20 @@
  
 package theprime.activity
 
-import theprime.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.adsmedia.adsmodul.AdsHelper
+import com.adsmedia.adsmodul.OpenAds
+import com.adsmedia.adsmodul.utils.AdsConfig
 import dagger.hilt.android.AndroidEntryPoint
+import theprime.BuildConfig
+import theprime.R
+import theprime.config.AdsData
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -44,6 +50,8 @@ class SplashActivity @Inject constructor(): LocaleAwareActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         // Splashscreen actually crashes on Android 12 when targeting Android 13
         // https://stackoverflow.com/questions/72390747/crash-activity-client-record-must-not-be-null-to-execute-transaction-item-only
         // See: https://issuetracker.google.com/issues/210886009
@@ -56,6 +64,8 @@ class SplashActivity @Inject constructor(): LocaleAwareActivity() {
             // java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.
             setTheme(R.style.Theme_App_DayNight)
         }
+
+
 
         if (!skip) {
             // Setup our splash screen
@@ -73,6 +83,10 @@ class SplashActivity @Inject constructor(): LocaleAwareActivity() {
             }
         }
 
+
+
+
+
         //setContentView(R.layout.activity_splash)
 
         findViewById<View>(android.R.id.content).
@@ -83,10 +97,26 @@ class SplashActivity @Inject constructor(): LocaleAwareActivity() {
             // Just start our main activity now for fastest loading
             // TODO: check if we need onboarding
             // Launch main activity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            //
-            finish()
+
+            AdsHelper.initializeAdsPrime(this, BuildConfig.APPLICATION_ID, AdsConfig.Game_App_ID)
+            if (BuildConfig.DEBUG) {
+                AdsHelper.debugModePrime(true)
+            }
+
+            AdsData.getIDAds();
+            OpenAds.LoadOpenAds(AdsConfig.Open_App_ID)
+            OpenAds.AppOpenAdManager.showAdIfAvailable(this) {
+                val intent = Intent(this, MainActivity::class.java)
+                object : CountDownTimer(5000, 1000) {
+                    override fun onFinish() {
+                        startActivity(intent)
+                        finish()
+                    }
+                    override fun onTick(millisUntilFinished: Long) {
+                    }
+                }.start()
+            }
+
         },0)
     }
 

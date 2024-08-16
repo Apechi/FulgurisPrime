@@ -944,7 +944,7 @@ class WebPageTab(
      * pause for all WebViews in the app.
      */
     fun pauseTimers() {
-        webView?.pauseTimers()
+//        webView?.pauseTimers()
         Timber.d("Pausing JS timers")
     }
 

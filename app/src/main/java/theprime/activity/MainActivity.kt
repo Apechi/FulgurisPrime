@@ -2,10 +2,15 @@ package theprime.activity
 
 import theprime.R
 import android.content.Intent
+import android.os.Bundle
 import android.view.KeyEvent
 import android.webkit.CookieManager
+import com.adsmedia.adsmodul.AdsHelper
+import com.adsmedia.adsmodul.utils.AdsConfig
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Completable
+import theprime.BuildConfig
+import theprime.Entitlement
 import javax.inject.Inject
 
 /**
@@ -13,6 +18,11 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 class MainActivity @Inject constructor(): WebBrowserActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
 
     public override fun updateCookiePreference(): Completable = Completable.fromAction {

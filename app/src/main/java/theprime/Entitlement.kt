@@ -26,9 +26,9 @@ class Entitlement {
     companion object {
         // @JvmStatic is there to avoid having to use the companion object when calling that function
         // See: https://www.baeldung.com/kotlin-static-methods
+        var kMaxTabCount = 20;
         @JvmStatic
         fun maxTabCount(aSponsorship: Sponsorship): Int {
-            val kMaxTabCount = 20;
             return when (aSponsorship) {
                 Sponsorship.TIN -> 20
                 Sponsorship.BRONZE -> kMaxTabCount
@@ -39,6 +39,13 @@ class Entitlement {
                 // Defensive
                 //else -> kMaxTabCount
             }
+        }
+        fun increaseMaxCount(num: Int) {
+            kMaxTabCount += num
+        }
+
+        fun initialMaxTabCount(num: Int) {
+            kMaxTabCount = num
         }
     }
 }

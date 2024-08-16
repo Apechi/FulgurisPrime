@@ -4,6 +4,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://artifact.bytedance.com/repository/pangle/")
+        }
         gradlePluginPortal()
     }
     dependencies {
@@ -29,13 +32,17 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
+
         mavenCentral()
         gradlePluginPortal()
         maven {
             url 'https://jitpack.io'
         }
+        maven {
+            url = uri("https://artifact.bytedance.com/repository/pangle/")
+        }
         jcenter()
+        google()
     }
 }
 

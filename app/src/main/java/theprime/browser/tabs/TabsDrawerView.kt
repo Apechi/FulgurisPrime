@@ -67,9 +67,6 @@ class TabsDrawerView @JvmOverloads constructor(
             setHasFixedSize(false)
         }
 
-        iBinding.actionCloseTabsDrawer.setOnClickListener {
-            webBrowser.onBackButtonPressed()
-        }
 
 
         val callback: ItemTouchHelper.Callback = ItemDragDropSwipeHelper(tabsAdapter)

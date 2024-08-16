@@ -291,16 +291,22 @@ class TabsManager @Inject constructor(
             tryRestorePreviousTabs(activity).forEach {
                 try {
                     list.add(newTab(activity, it, incognito, NewTabPosition.END_OF_TAB_LIST))
+                    val currentTab: Int = list.size
+                    if (currentTab > 20) {
+                        Entitlement.initialMaxTabCount(currentTab)
+                    }
                 } catch (ex: Throwable) {
                     // That's a corrupted session file, can happen when importing garbage.
                     activity.snackbar(R.string.error_session_file_corrupted)
                 }
             }
 
+
             // Make sure we have one tab
             if (list.isEmpty()) {
                 list.add(newTab(activity, homePageInitializer, incognito, NewTabPosition.END_OF_TAB_LIST))
             }
+
         }
 
         finishInitialization()
@@ -523,7 +529,7 @@ class TabsManager @Inject constructor(
      * onResume doesn't consistently resume it.
      */
     fun pauseAll() {
-        currentTab?.pauseTimers()
+//        currentTab?.pauseTimers()
         tabList.forEach(WebPageTab::onPause)
     }
 

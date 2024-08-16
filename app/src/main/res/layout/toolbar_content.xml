@@ -23,6 +23,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="@dimen/toolbar_height_portrait"
@@ -31,7 +33,7 @@
     android:animateLayoutChanges="true">
 
 
-    <include android:id="@+id/address_bar_include" layout="@layout/search" />
+
 
     <!--
 
@@ -76,6 +78,8 @@
         app:tooltipText="@{@string/action_back}"
         app:srcCompat="@drawable/ic_action_back" />
 
+
+    <include android:id="@+id/address_bar_include" layout="@layout/search" />
     <ImageButton
         android:id="@+id/button_action_forward"
         style="?android:attr/actionButtonStyle"
@@ -116,10 +120,10 @@
     <ImageButton
         android:id="@+id/button_more"
         style="?android:attr/actionButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_lightning"
+        app:srcCompat="@drawable/ic_launcher_foreground"
         android:contentDescription="@string/action_menu"
         app:tooltipText="@{@string/action_menu}"
         android:nextFocusDown="@id/web_view"

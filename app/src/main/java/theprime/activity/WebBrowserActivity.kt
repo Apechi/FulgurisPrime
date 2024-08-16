@@ -28,6 +28,7 @@ import android.os.*
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.view.View.*
 import android.view.ViewGroup.LayoutParams
@@ -67,6 +68,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.adsmedia.adsmodul.AdsHelper
+import com.adsmedia.adsmodul.utils.AdsConfig
 import com.android.volley.*
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -76,8 +79,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.Completable
+import io.reactivex.Scheduler
+import io.reactivex.rxkotlin.subscribeBy
+import junit.framework.Assert.assertNull
+import org.json.JSONObject
 import theprime.*
 import theprime.BuildConfig
+import theprime.R
 import theprime.adblock.AbpUserRules
 import theprime.browser.*
 import theprime.browser.bookmarks.BookmarksDrawerView
@@ -112,19 +121,12 @@ import theprime.settings.NewTabPosition
 import theprime.settings.fragment.BottomSheetDialogFragment
 import theprime.settings.fragment.DisplaySettingsFragment.Companion.MAX_BROWSER_TEXT_SIZE
 import theprime.settings.fragment.DisplaySettingsFragment.Companion.MIN_BROWSER_TEXT_SIZE
-import theprime.settings.fragment.SponsorshipSettingsFragment
 import theprime.ssl.SslState
 import theprime.ssl.createSslDrawableForState
 import theprime.ssl.showSslDialog
 import theprime.utils.*
 import theprime.view.*
 import theprime.view.SearchView
-import io.reactivex.Completable
-import io.reactivex.Scheduler
-import io.reactivex.rxkotlin.subscribeBy
-import junit.framework.Assert.assertNull
-import org.json.JSONObject
-import theprime.R
 import timber.log.Timber
 import java.io.IOException
 import java.util.*
@@ -439,6 +441,19 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
             }.show()
         }
 
+        AdsHelper.initializeAdsPrime(this, BuildConfig.APPLICATION_ID, AdsConfig.Banner_ID)
+
+        if (BuildConfig.DEBUG) {
+            AdsHelper.debugModePrime(true)
+        }
+
+        AdsHelper.showBannerPrime(
+            this, findViewById(R.id.layAds),
+            AdsConfig.Banner_ID
+        )
+
+
+
         // Welcome new users or notify of updates
         tabsManager.doOnceAfterInitialization {
             // If our version code was changed
@@ -463,6 +478,9 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
 
         // Hook in buttons with onClick handler
         iBindingToolbarContent.buttonReload.setOnClickListener(this)
+
+
+
 
     }
 
@@ -1128,6 +1146,13 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
 
 
         setupButtonMore()
+
+        AdsHelper.initializeAdsPrime(this, BuildConfig.APPLICATION_ID, AdsConfig.Banner_ID)
+
+        AdsHelper.showBannerPrime(
+            this, findViewById(R.id.layAds),
+            AdsConfig.Banner_ID
+        )
     }
 
     /**
@@ -3474,6 +3499,7 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
     override fun onResume() {
         updateConfigurationSharedPreferences()
         super.onResume()
+
         Timber.d("onResume")
         // Check if some settings changes require application restart
         if (swapBookmarksAndTabs != userPreferences.bookmarksAndTabsSwapped
@@ -3521,6 +3547,13 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
 
         // We think that's needed in case there was a rotation while in the background
         iBinding.drawerLayout.requestLayout()
+
+        AdsHelper.initializeAdsPrime(this, BuildConfig.APPLICATION_ID, AdsConfig.Banner_ID)
+
+        AdsHelper.showBannerPrime(
+            this, findViewById(R.id.layAds),
+            AdsConfig.Banner_ID
+        )
 
         //currentTabView?.removeFromParent()?.addView(currentTabView)
 
@@ -4791,13 +4824,24 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
     /**
      * Implement [WebBrowser.onMaxTabReached]
      */
+
+
     override fun onMaxTabReached() {
         // Show a message telling the user to contribute.
         // It provides a link to our settings Contribute section.
         makeSnackbar(
                 getString(R.string.max_tabs), 10000, if (configPrefs.toolbarsBottom) Gravity.TOP else Gravity.BOTTOM) //Snackbar.LENGTH_LONG
                 .setAction(R.string.show, OnClickListener {
-                    // TODO: PASANG IKLAN INTERSTITIAL DI SINI DAN TAMBAHKAN KE MAXTAB 0 SETIAP IKLAN BERES KALAU BISA
+                    onResume()
+                    AdsHelper.loadInterstitialPrime(this, AdsConfig.Interstitial_ID)
+                    AdsHelper.showInterstitialPrime(this, AdsConfig.Interstitial_ID, AdsConfig.Interval)
+                    if (AdsHelper.count == 0 ) {
+                    Entitlement.increaseMaxCount(10)
+                    } else
+                    {
+                        Toast.makeText(this, getString(R.string.try_again_ads), Toast.LENGTH_SHORT).show()
+                    }
+
                 }).show()
     }
 
